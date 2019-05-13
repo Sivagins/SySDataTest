@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct UserNameModel: Decodable {
+    var title: String
+    var first: String
+    var last: String
+}

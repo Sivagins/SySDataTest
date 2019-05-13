@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+class Constants {
+    
+    static let serverPath: String = "https://randomuser.me/api/"
+}

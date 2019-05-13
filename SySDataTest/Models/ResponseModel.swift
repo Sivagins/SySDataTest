@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+struct ResponseModel<T: Decodable>: Decodable {
+    var results: [T]
+}

@@ -9,10 +9,22 @@
 import UIKit
 
 class MainListUserCollectionViewCell: UICollectionViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    
+    func setup(with user: UserModel) {
+        let name = user.name
+        nameLabel.text = String(format: "%@ %@", name.first, name.last)
+        locationLabel.text = user.location.city
+        phoneLabel.text = user.phone
+        guard let avatarURL = URL(string: user.picture.medium) else {
+            return
+        }
+        avatarImageView.sd_setImage(with: avatarURL, completed: nil)
+        layer.borderColor = UIColor.black.cgColor
+        layer.borderWidth = 0.5
     }
-
 }

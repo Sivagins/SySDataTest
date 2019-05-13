@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+struct UserLocationModel: Decodable {
+    var street: String
+    var city: String
+    var state: String
+    var postcode: AnyValue
+}

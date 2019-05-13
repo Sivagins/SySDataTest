@@ -12,4 +12,6 @@ struct UserModel: Decodable {
     var email: String
     var phone: String
     var picture: PictureModel
+    var name: UserNameModel
+    var location: UserLocationModel
 }

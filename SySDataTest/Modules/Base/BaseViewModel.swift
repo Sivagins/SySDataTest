@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+protocol BaseViewModel {
+    var coordinator: Coordinator { get set }
+    var dataManager: DataManager { get set }
+}

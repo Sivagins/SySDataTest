@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct PictureModel: Decodable {
+    var large: String
+    var medium: String
+    var thumbnail: String
+}

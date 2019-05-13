@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MainListUserTableViewCell: UITableViewCell {
 
@@ -20,5 +21,9 @@ class MainListUserTableViewCell: UITableViewCell {
         nameLabel.text = String(format: "%@ %@", name.first, name.last)
         locationLabel.text = user.location.city
         phoneLabel.text = user.phone
+        guard let avatarURL = URL(string: user.picture.medium) else {
+            return
+        }
+        avatarImageView.sd_setImage(with: avatarURL, completed: nil)
     }
 }
