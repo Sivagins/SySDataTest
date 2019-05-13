@@ -15,6 +15,14 @@ class MainListUserCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarImageView.image = nil
+        nameLabel.text = ""
+        locationLabel.text = ""
+        phoneLabel.text = ""
+    }
+    
     func setup(with user: UserModel) {
         let name = user.name
         nameLabel.text = String(format: "%@ %@", name.first, name.last)
