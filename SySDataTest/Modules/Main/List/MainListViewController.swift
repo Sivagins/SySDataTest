@@ -17,7 +17,7 @@ class MainListViewController: BaseViewController {
     
     init(viewModel: MainListViewModelProtocol) {
         self.viewModel = viewModel
-        super.init(nibName: MainListViewController.className, bundle: nil)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {

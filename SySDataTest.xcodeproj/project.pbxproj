@@ -27,7 +27,6 @@
 		7DCC92CC22897C91003083F4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC92CB22897C91003083F4 /* Constants.swift */; };
 		7DCC92CF22897D1F003083F4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC92CE22897D1F003083F4 /* DataManager.swift */; };
 		7DCC92D522897DC3003083F4 /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC92D322897DC3003083F4 /* MainListViewController.swift */; };
-		7DCC92D622897DC3003083F4 /* MainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCC92D422897DC3003083F4 /* MainListViewController.xib */; };
 		7DCC92D822897DDF003083F4 /* MainListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC92D722897DDF003083F4 /* MainListViewModel.swift */; };
 		7DCC92DB22897E7C003083F4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC92DA22897E7C003083F4 /* UserModel.swift */; };
 		7DCC92DD22897ECB003083F4 /* PictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC92DC22897ECB003083F4 /* PictureModel.swift */; };
@@ -62,7 +61,6 @@
 		7DCC92CB22897C91003083F4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7DCC92CE22897D1F003083F4 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7DCC92D322897DC3003083F4 /* MainListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewController.swift; sourceTree = "<group>"; };
-		7DCC92D422897DC3003083F4 /* MainListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainListViewController.xib; sourceTree = "<group>"; };
 		7DCC92D722897DDF003083F4 /* MainListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewModel.swift; sourceTree = "<group>"; };
 		7DCC92DA22897E7C003083F4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7DCC92DC22897ECB003083F4 /* PictureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureModel.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 				7DCC92EB22898C59003083F4 /* TableViewCell */,
 				7D0994632289973B00C6C9B8 /* CollectionViewCell */,
 				7DCC92D322897DC3003083F4 /* MainListViewController.swift */,
-				7DCC92D422897DC3003083F4 /* MainListViewController.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -362,7 +359,6 @@
 				7D0994672289975000C6C9B8 /* MainListUserCollectionViewCell.xib in Resources */,
 				7DCC92A3228972E8003083F4 /* Assets.xcassets in Resources */,
 				7DCC92C1228974BE003083F4 /* MainPickerViewController.xib in Resources */,
-				7DCC92D622897DC3003083F4 /* MainListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
