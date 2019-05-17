@@ -37,6 +37,16 @@ class MainListViewController: BaseViewController {
         setupSortHandler()
     }
     
+    override func showLoading() {
+        super.showLoading()
+        loader?.isHidden = false
+    }
+    
+    override func hideLoading() {
+        super.hideLoading()
+        loader?.isHidden = true
+    }
+    
     private func setupNavigationBar() {
         let sortBarItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(onSortTapped))
         navigationItem.rightBarButtonItem = sortBarItem
@@ -94,7 +104,7 @@ class MainListViewController: BaseViewController {
         showLoading()
         viewModel.usersHandler = { [weak self] indexPaths in
             self?.hideLoading()
-            self?.tableView?.insertRows(at: indexPaths, with: .none)
+            self?.tableView?.insertRows(at: indexPaths, with: .bottom)
             self?.collectionView?.insertItems(at: indexPaths)
             self?.viewModel.refreshed()
         }
@@ -104,6 +114,16 @@ class MainListViewController: BaseViewController {
         viewModel.sortHandler = { [weak self] in
             self?.tableView?.reloadData()
             self?.collectionView?.reloadData()
+        }
+    }
+    
+    private func isNeedRefresh(using scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.size.height
+        if (offsetY + height) >= contentHeight * 0.75 {
+            loader?.isHidden = false
+            viewModel.getUsers()
         }
     }
     
@@ -163,13 +183,8 @@ extension MainListViewController: UITableViewDataSource {
         return UITableView.automaticDimension
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let height = scrollView.frame.size.height
-        let contentYoffset = scrollView.contentOffset.y
-        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
-        if distanceFromBottom * 0.5 < height {
-            viewModel.getUsers()
-        }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        isNeedRefresh(using: scrollView)
     }
 }
 
