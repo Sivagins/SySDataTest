@@ -12,6 +12,7 @@ class MainListViewController: BaseViewController {
 
     private var tableView: UITableView?
     private var collectionView: UICollectionView?
+    private var loader: UIActivityIndicatorView?
     
     var viewModel: MainListViewModelProtocol
     
@@ -48,6 +49,7 @@ class MainListViewController: BaseViewController {
         tableView?.separatorColor = UIColor.gray
         tableView?.separatorInset = UIEdgeInsets.zero
         tableView?.backgroundColor = .white
+        setupTableViewLoader()
         // register cell
         let name = MainListUserTableViewCell.className
         tableView?.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
@@ -71,6 +73,13 @@ class MainListViewController: BaseViewController {
             view.addSubview(collectionView)
             setParentConstranits(for: collectionView)
         }
+    }
+    
+    private func setupTableViewLoader() {
+        loader = UIActivityIndicatorView(style: .gray)
+        loader?.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        loader?.startAnimating()
+        tableView?.tableFooterView = loader
     }
     
     private func setParentConstranits(for targetView: UIView) {
