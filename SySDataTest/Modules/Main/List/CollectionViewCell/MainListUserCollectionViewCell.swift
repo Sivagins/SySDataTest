@@ -15,12 +15,22 @@ class MainListUserCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupBorder()
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarImageView.image = nil
         nameLabel.text = ""
         locationLabel.text = ""
         phoneLabel.text = ""
+    }
+    
+    private func setupBorder() {
+        layer.borderColor = UIColor.black.cgColor
+        layer.borderWidth = 0.5
     }
     
     func setup(with user: UserModel) {
@@ -32,7 +42,5 @@ class MainListUserCollectionViewCell: UICollectionViewCell {
             return
         }
         avatarImageView.sd_setImage(with: avatarURL, completed: nil)
-        layer.borderColor = UIColor.black.cgColor
-        layer.borderWidth = 0.5
     }
 }
