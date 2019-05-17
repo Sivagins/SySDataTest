@@ -13,6 +13,8 @@
 		7D09946A22899E2100C6C9B8 /* MainProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D09946822899E2100C6C9B8 /* MainProfileViewController.swift */; };
 		7D09946B22899E2100C6C9B8 /* MainProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D09946922899E2100C6C9B8 /* MainProfileViewController.xib */; };
 		7D09946D2289A3B400C6C9B8 /* MainProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D09946C2289A3B400C6C9B8 /* MainProfileViewModel.swift */; };
+		7DBBD66B228ECC95001E3CF6 /* MainListFooterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBBD669228ECC95001E3CF6 /* MainListFooterCollectionViewCell.swift */; };
+		7DBBD66E228ED53F001E3CF6 /* UIView+ParentAnchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBBD66D228ED53F001E3CF6 /* UIView+ParentAnchors.swift */; };
 		7DCC929C228972E6003083F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCC929B228972E6003083F4 /* AppDelegate.swift */; };
 		7DCC92A3228972E8003083F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DCC92A2228972E8003083F4 /* Assets.xcassets */; };
 		7DCC92A6228972E8003083F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCC92A4228972E8003083F4 /* LaunchScreen.storyboard */; };
@@ -45,6 +47,8 @@
 		7D09946822899E2100C6C9B8 /* MainProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfileViewController.swift; sourceTree = "<group>"; };
 		7D09946922899E2100C6C9B8 /* MainProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainProfileViewController.xib; sourceTree = "<group>"; };
 		7D09946C2289A3B400C6C9B8 /* MainProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfileViewModel.swift; sourceTree = "<group>"; };
+		7DBBD669228ECC95001E3CF6 /* MainListFooterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListFooterCollectionViewCell.swift; sourceTree = "<group>"; };
+		7DBBD66D228ED53F001E3CF6 /* UIView+ParentAnchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ParentAnchors.swift"; sourceTree = "<group>"; };
 		7DCC9298228972E6003083F4 /* SySDataTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SySDataTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DCC929B228972E6003083F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DCC92A2228972E8003083F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 		7D0994632289973B00C6C9B8 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				7DBBD669228ECC95001E3CF6 /* MainListFooterCollectionViewCell.swift */,
 				7D0994642289975000C6C9B8 /* MainListUserCollectionViewCell.swift */,
 				7D0994652289975000C6C9B8 /* MainListUserCollectionViewCell.xib */,
 			);
@@ -227,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				7DCC92C622897A14003083F4 /* NSObject+className.swift */,
+				7DBBD66D228ED53F001E3CF6 /* UIView+ParentAnchors.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -374,14 +380,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SySDataTest/Pods-SySDataTest-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,10 +423,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DCC92C0228974BE003083F4 /* MainPickerViewController.swift in Sources */,
+				7DBBD66E228ED53F001E3CF6 /* UIView+ParentAnchors.swift in Sources */,
 				7DCC92EE22898C73003083F4 /* MainListUserTableViewCell.swift in Sources */,
 				7DCC92CF22897D1F003083F4 /* DataManager.swift in Sources */,
 				7DCC92B82289738C003083F4 /* BaseViewModel.swift in Sources */,
 				7DCC92E022897F12003083F4 /* UserNameModel.swift in Sources */,
+				7DBBD66B228ECC95001E3CF6 /* MainListFooterCollectionViewCell.swift in Sources */,
 				7DCC92B622897385003083F4 /* BaseViewController.swift in Sources */,
 				7D0994662289975000C6C9B8 /* MainListUserCollectionViewCell.swift in Sources */,
 				7DCC92C922897C6D003083F4 /* NetworkService.swift in Sources */,

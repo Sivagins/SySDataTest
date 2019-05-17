@@ -12,7 +12,7 @@ class MainListViewController: BaseViewController {
 
     private var tableView: UITableView?
     private var collectionView: UICollectionView?
-    private var loader: UIActivityIndicatorView?
+    private var footerView: UIActivityIndicatorView?
     
     var viewModel: MainListViewModelProtocol
     
@@ -28,6 +28,7 @@ class MainListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupFooterView()
         if viewModel.type == .grid {
             setupCollectionView()
         } else {
@@ -37,14 +38,12 @@ class MainListViewController: BaseViewController {
         setupSortHandler()
     }
     
-    override func showLoading() {
-        super.showLoading()
-        loader?.isHidden = false
+    private func showLoading() {
+        footerView?.isHidden = false
     }
     
-    override func hideLoading() {
-        super.hideLoading()
-        loader?.isHidden = true
+    private func hideLoading() {
+        footerView?.isHidden = true
     }
     
     private func setupNavigationBar() {
@@ -54,18 +53,19 @@ class MainListViewController: BaseViewController {
     
     private func setupTableView() {
         tableView = UITableView(frame: view.bounds)
+        tableView?.backgroundColor = .white
         tableView?.delegate = self
         tableView?.dataSource = self
+        tableView?.separatorStyle = .singleLine
         tableView?.separatorColor = UIColor.gray
-        tableView?.separatorInset = UIEdgeInsets.zero
         tableView?.backgroundColor = .white
-        setupTableViewLoader()
+        tableView?.tableFooterView = footerView
         // register cell
         let name = MainListUserTableViewCell.className
         tableView?.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
         if let tableView = tableView {
             view.addSubview(tableView)
-            setParentConstranits(for: tableView)
+            view.setupAnchors(for: tableView)
         }
     }
     
@@ -74,38 +74,38 @@ class MainListViewController: BaseViewController {
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
+        collectionView?.backgroundColor = .white
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.backgroundColor = .white
-        let name = MainListUserCollectionViewCell.className
-        collectionView?.register(UINib(nibName: name, bundle: nil), forCellWithReuseIdentifier: name)
+        let cellName = MainListUserCollectionViewCell.className
+        collectionView?.register(UINib(nibName: cellName, bundle: nil), forCellWithReuseIdentifier: cellName)
+        collectionView?.register(MainListFooterCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                 withReuseIdentifier: MainListFooterCollectionViewCell.className)
         if let collectionView = collectionView {
             view.addSubview(collectionView)
-            setParentConstranits(for: collectionView)
+            view.setupAnchors(for: collectionView)
         }
     }
     
-    private func setupTableViewLoader() {
-        loader = UIActivityIndicatorView(style: .gray)
-        loader?.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-        loader?.startAnimating()
-        tableView?.tableFooterView = loader
-    }
-    
-    private func setParentConstranits(for targetView: UIView) {
-        targetView.translatesAutoresizingMaskIntoConstraints = false
-        targetView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        targetView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        targetView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        targetView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+    private func setupFooterView() {
+        footerView = UIActivityIndicatorView(style: .gray)
+        footerView?.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        footerView?.startAnimating()
     }
     
     private func setupUsersHandler() {
         showLoading()
         viewModel.usersHandler = { [weak self] indexPaths in
             self?.hideLoading()
-            self?.tableView?.insertRows(at: indexPaths, with: .bottom)
-            self?.collectionView?.insertItems(at: indexPaths)
+            if self?.viewModel.type == .list {
+                // Switch animation off for removing default insert animation.
+                UIView.performWithoutAnimation {
+                    self?.tableView?.insertRows(at: indexPaths, with: .none)
+                }
+            } else {
+                self?.collectionView?.insertItems(at: indexPaths)
+            }
             self?.viewModel.refreshed()
         }
     }
@@ -121,8 +121,8 @@ class MainListViewController: BaseViewController {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.size.height
-        if (offsetY + height) >= contentHeight * 0.75 {
-            loader?.isHidden = false
+        if (offsetY + height) >= contentHeight {
+            footerView?.isHidden = false
             viewModel.getUsers()
         }
     }
@@ -180,10 +180,16 @@ extension MainListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 44
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            isNeedRefresh(using: scrollView)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         isNeedRefresh(using: scrollView)
     }
 }
@@ -217,5 +223,19 @@ extension MainListViewController: UICollectionViewDataSource {
             cell.setup(with: user)
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: 32)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
+                                                                     withReuseIdentifier: MainListFooterCollectionViewCell.className,
+                                                                     for: indexPath)
+        if let cell = footer as? MainListFooterCollectionViewCell, let footerView = footerView {
+            cell.setup(with: footerView)
+        }
+        return footer
     }
 }

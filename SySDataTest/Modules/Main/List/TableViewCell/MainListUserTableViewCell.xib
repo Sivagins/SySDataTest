@@ -48,8 +48,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="SHk-Na-aG3" secondAttribute="bottom" id="6Nm-DM-5kE"/>
                     <constraint firstItem="NFJ-0w-Wdz" firstAttribute="leading" secondItem="SHk-Na-aG3" secondAttribute="trailing" constant="8" id="8tk-Ku-jaE"/>

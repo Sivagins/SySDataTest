@@ -18,6 +18,7 @@ class MainListUserTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        avatarImageView.sd_cancelCurrentImageLoad()
         avatarImageView.image = nil
         nameLabel.text = ""
         locationLabel.text = ""

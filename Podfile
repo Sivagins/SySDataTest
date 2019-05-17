@@ -4,5 +4,4 @@ use_frameworks!
 
 target 'SySDataTest' do
   pod 'SDWebImage', '~> 5.0'
-  pod 'MBProgressHUD', '~> 1.1.0'
 end
